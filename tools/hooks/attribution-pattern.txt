@@ -1,0 +1,1 @@
+co-authored-by:[[:space:]]*.*(claude|copilot|chatgpt|gpt-|anthropic|openai)|generated with[[:space:]]+\[?(claude|copilot|chatgpt)|🤖[[:space:]]*generated

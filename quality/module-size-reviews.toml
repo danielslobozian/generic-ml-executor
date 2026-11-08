@@ -1,0 +1,4 @@
+# Responsibility reviews for production modules of 201-300 physical lines.
+# One [[review]] table per module: module (repository-relative path), reviewer,
+# date (YYYY-MM-DD) and responsibility (why the module is one responsibility).
+review = []

@@ -1,0 +1,9 @@
+{
+  "include": ["src", "tests", "tools", "noxfile.py"],
+  "exclude": ["**/__pycache__", ".venv", ".nox", "tests/gates/fixtures"],
+  "extraPaths": ["."],
+  "typeCheckingMode": "strict",
+  "pythonVersion": "3.11",
+  "reportMissingModuleSource": "error",
+  "reportUnnecessaryTypeIgnoreComment": "error"
+}

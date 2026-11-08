@@ -1,0 +1,24 @@
+# Local hooks. The fast gate subset is a convenience; the gate is `uv run --frozen nox -s green`.
+# Install the commit-message hook with: uv run --frozen pre-commit install --hook-type commit-msg
+repos:
+  - repo: local
+    hooks:
+      - id: check-commit-msg
+        name: no AI attribution in the commit message
+        entry: tools/hooks/check-commit-msg.sh
+        language: script
+        stages: [commit-msg]
+      - id: check-branch-name
+        name: no commit on main
+        entry: tools/hooks/check-branch-name.sh
+        language: script
+        pass_filenames: false
+        always_run: true
+        stages: [pre-commit]
+      - id: fast-gates
+        name: fast gates (lint structure imports typecheck)
+        entry: uv run --frozen nox -s lint structure imports typecheck
+        language: system
+        pass_filenames: false
+        always_run: true
+        stages: [pre-commit]
