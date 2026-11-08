@@ -1,0 +1,32 @@
+# The `no AI attribution` check: one of the two checks branch protection on main requires.
+# It is not a quality gate (not in nox or `green`): it checks contribution metadata.
+name: pr-hygiene
+
+on:
+  pull_request:
+    types: [opened, edited, reopened, synchronize]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pr-hygiene-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  no-ai-attribution:
+    name: no AI attribution
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the pull request's history
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Scan the title, the body and every commit message
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: sh tools/hooks/scan-pull-request.sh

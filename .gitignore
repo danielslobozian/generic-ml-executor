@@ -15,5 +15,4 @@ results/
 .scannerwork/
 .sonar/
 .codacy/logs/
-.codacy/tools-configs/
 .codacy/plugins/
