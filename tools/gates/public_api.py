@@ -21,7 +21,7 @@ from pathlib import Path
 
 import griffe
 
-from tools.gates import comparison_base, repo_paths
+from tools.gates import comparison_base
 
 SNAPSHOT = "api/public-api.json"
 COUPLED = ("docs/reference/public-api.md", "CHANGELOG.md")
@@ -101,18 +101,16 @@ def main(argv: list[str] | None = None) -> int:
         The process exit status: 0 when the gate passes, 1 otherwise.
     """
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--src", type=repo_paths.safe_path, default=Path("src"))
-    parser.add_argument("--snapshot", type=repo_paths.safe_path, default=Path(SNAPSHOT))
     parser.add_argument("--write", action="store_true", help="write the current surface")
     args = parser.parse_args(argv)
-    current = render(surface(args.src))
+    current = render(surface(Path("src")))
     if args.write:
-        args.snapshot.write_text(current, encoding="utf-8")
+        Path(SNAPSHOT).write_text(current, encoding="utf-8")
         return 0
     problems: list[str] = []
-    committed = args.snapshot.read_text(encoding="utf-8") if args.snapshot.is_file() else ""
+    committed = Path(SNAPSHOT).read_text(encoding="utf-8") if Path(SNAPSHOT).is_file() else ""
     if committed != current:
-        problems.append(f"the public surface differs from {args.snapshot}; update the snapshot")
+        problems.append(f"the public surface differs from {Path(SNAPSHOT)}; update the snapshot")
     problems += coupling_problems(_changed_files(comparison_base.resolve()))
     for problem in problems:
         print(f"public_api: {problem}", file=sys.stderr)

@@ -24,10 +24,11 @@ import urllib.request
 import zipfile
 from pathlib import Path
 
-from tools.gates import codacy_new_findings, comparison_base, repo_paths, toml_tables
+from tools.gates import codacy_new_findings, comparison_base, toml_tables
 
 CONFIG = Path("tools/gates/codacy_cli.toml")
 CONFIG_DIR = Path(".codacy")
+RESULTS = Path("results")
 CODACY_YML = Path(".codacy.yml")
 FAILURE_SIGNALS = ("failed to run", "installation failed", "failed to install")
 EMPTY_SARIF = '{"version": "2.1.0", "runs": []}\n'
@@ -203,11 +204,9 @@ def main(argv: list[str] | None = None) -> int:
         The process exit status.
     """
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--config", type=repo_paths.safe_path, default=CONFIG)
-    parser.add_argument("--results", type=repo_paths.safe_path, default=Path("results"))
-    args = parser.parse_args(argv)
+    parser.parse_args(argv)
     try:
-        return run(args.config, args.results)
+        return run(CONFIG, RESULTS)
     except (CodacyUnavailableError, subprocess.CalledProcessError) as error:
         print(f"codacy: gate infrastructure unavailable: {error}", file=sys.stderr)
         return 1

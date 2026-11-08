@@ -28,7 +28,7 @@ import urllib.request
 from pathlib import Path
 from typing import cast
 
-from tools.gates import repo_paths, toml_tables
+from tools.gates import toml_tables
 
 CONFIG = Path("tools/gates/sonar_quality_gate.toml")
 TIMEOUT_SECONDS = 60
@@ -136,9 +136,8 @@ def main(argv: list[str] | None = None) -> int:
         The process exit status: 0 when the quality gate passes, 1 otherwise.
     """
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--config", type=repo_paths.safe_path, default=CONFIG)
-    args = parser.parse_args(argv)
-    config = toml_tables.load(args.config)
+    parser.parse_args(argv)
+    config = toml_tables.load(CONFIG)
     service = toml_tables.table(config, "service")
     token = os.environ.get("SONAR_TOKEN", "")
     if not token:
