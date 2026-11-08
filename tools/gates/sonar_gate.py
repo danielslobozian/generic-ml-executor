@@ -28,7 +28,7 @@ import urllib.request
 from pathlib import Path
 from typing import cast
 
-from tools.gates import toml_tables
+from tools.gates import repo_paths, toml_tables
 
 CONFIG = Path("tools/gates/sonar_quality_gate.toml")
 TIMEOUT_SECONDS = 60
@@ -44,7 +44,7 @@ def _get(host: str, path: str, query: dict[str, str], token: str) -> dict[str, o
     if not url.startswith("https://"):
         message = f"refusing a non-HTTPS service URL: {host}"
         raise GateUnavailableError(message)
-    request = urllib.request.Request(url)  # noqa: S310 - HTTPS checked above
+    request = urllib.request.Request(url)  # noqa: S310
     credentials = base64.b64encode(f"{token}:".encode()).decode()
     request.add_header("Authorization", f"Basic {credentials}")
     try:
@@ -136,7 +136,7 @@ def main(argv: list[str] | None = None) -> int:
         The process exit status: 0 when the quality gate passes, 1 otherwise.
     """
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--config", type=Path, default=CONFIG)
+    parser.add_argument("--config", type=repo_paths.safe_path, default=CONFIG)
     args = parser.parse_args(argv)
     config = toml_tables.load(args.config)
     service = toml_tables.table(config, "service")

@@ -20,7 +20,7 @@ import ast
 import sys
 from pathlib import Path
 
-from tools.gates import comparison_base, toml_tables
+from tools.gates import comparison_base, repo_paths, toml_tables
 
 REGISTER = "tools/gates/gate-set.toml"
 NOT_GATES = frozenset({"green", "acceptance", "installed"})
@@ -126,9 +126,11 @@ def main(argv: list[str] | None = None) -> int:
         The process exit status: 0 when the register passes, 1 otherwise.
     """
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--noxfile", type=Path, default=Path("noxfile.py"))
-    parser.add_argument("--register", type=Path, default=Path(REGISTER))
-    parser.add_argument("--prior-register", type=Path, help="register at the comparison base")
+    parser.add_argument("--noxfile", type=repo_paths.safe_path, default=Path("noxfile.py"))
+    parser.add_argument("--register", type=repo_paths.safe_path, default=Path(REGISTER))
+    parser.add_argument(
+        "--prior-register", type=repo_paths.safe_path, help="register at the comparison base"
+    )
     args = parser.parse_args(argv)
     if args.prior_register is not None:
         prior = args.prior_register.read_text(encoding="utf-8")

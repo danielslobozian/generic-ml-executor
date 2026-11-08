@@ -25,8 +25,11 @@ import re
 import sys
 from collections import Counter
 from dataclasses import dataclass
-from pathlib import Path
 from typing import cast
+
+from tools.gates import repo_paths
+
+_ObjectMap = dict[str, object]
 
 RANK = {"low": 1, "medium": 2, "high": 3, "critical": 4}
 SEVERITY_NAMES = {
@@ -74,7 +77,7 @@ class Finding:
 
 
 def _dict(value: object) -> dict[str, object]:
-    return cast("dict[str, object]", value) if isinstance(value, dict) else {}
+    return cast(_ObjectMap, value) if isinstance(value, dict) else {}
 
 
 def _list(value: object) -> list[object]:
@@ -185,11 +188,11 @@ def main(argv: list[str] | None = None) -> int:
         The process exit status: 0 when no significant finding is added, 1 otherwise.
     """
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("base", type=Path)
-    parser.add_argument("head", type=Path)
+    parser.add_argument("base", type=repo_paths.safe_path)
+    parser.add_argument("head", type=repo_paths.safe_path)
     args = parser.parse_args(argv)
-    base = cast("dict[str, object]", json.loads(args.base.read_text(encoding="utf-8")))
-    head = cast("dict[str, object]", json.loads(args.head.read_text(encoding="utf-8")))
+    base = cast(_ObjectMap, json.loads(args.base.read_text(encoding="utf-8")))
+    head = cast(_ObjectMap, json.loads(args.head.read_text(encoding="utf-8")))
     added = new_significant(base, head)
     for finding in added:
         category = "security" if finding.security else "other"

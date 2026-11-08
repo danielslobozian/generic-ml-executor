@@ -8,6 +8,8 @@ import tomllib
 from pathlib import Path
 from typing import cast
 
+_ObjectMap = dict[str, object]
+
 
 def load(path: Path) -> dict[str, object]:
     """Read a TOML file.
@@ -30,7 +32,7 @@ def parse(text: str) -> dict[str, object]:
     Returns:
         The parsed document.
     """
-    return cast("dict[str, object]", tomllib.loads(text))
+    return cast(_ObjectMap, tomllib.loads(text))
 
 
 def tables(document: dict[str, object], key: str) -> list[dict[str, object]]:
@@ -49,13 +51,13 @@ def tables(document: dict[str, object], key: str) -> list[dict[str, object]]:
     value = document.get(key, [])
     if not isinstance(value, list):
         message = f"'{key}' is not an array of tables"
-        raise ValueError(message)  # noqa: TRY004 - malformed data, reported as a value error
+        raise ValueError(message)  # noqa: TRY004
     result: list[dict[str, object]] = []
     for item in cast("list[object]", value):
         if not isinstance(item, dict):
             message = f"'{key}' holds an element that is not a table"
-            raise ValueError(message)  # noqa: TRY004 - malformed data, reported as a value error
-        result.append(cast("dict[str, object]", item))
+            raise ValueError(message)  # noqa: TRY004
+        result.append(cast(_ObjectMap, item))
     return result
 
 
@@ -97,5 +99,5 @@ def table(document: dict[str, object], key: str) -> dict[str, object]:
     value = document.get(key, {})
     if not isinstance(value, dict):
         message = f"'{key}' is not a table"
-        raise ValueError(message)  # noqa: TRY004 - malformed data, reported as a value error
-    return cast("dict[str, object]", value)
+        raise ValueError(message)  # noqa: TRY004
+    return cast(_ObjectMap, value)

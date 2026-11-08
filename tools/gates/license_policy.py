@@ -31,7 +31,7 @@ FAMILIES = (
     (re.compile(r"\bISC\b", re.IGNORECASE), "ISC"),
     (re.compile(r"\bMPL\b|Mozilla Public", re.IGNORECASE), "MPL-2.0"),
 )
-SPLIT = re.compile(r"\s+(?:OR|AND)\s+|;|\s+/\s+", re.IGNORECASE)
+SPLIT = re.compile(r" (?:OR|AND|/) |;", re.IGNORECASE)
 
 
 def families(licence: str) -> set[str]:

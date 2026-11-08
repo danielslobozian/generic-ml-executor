@@ -15,6 +15,8 @@ import sys
 from pathlib import Path
 from typing import cast
 
+from tools.gates import repo_paths
+
 FLOOR = 0.90
 
 
@@ -54,7 +56,9 @@ def main(argv: list[str] | None = None) -> int:
         The process exit status: 0 when the floor is met, 1 otherwise.
     """
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("report", type=Path, nargs="?", default=Path("coverage.json"))
+    parser.add_argument(
+        "report", type=repo_paths.safe_path, nargs="?", default=Path("coverage.json")
+    )
     args = parser.parse_args(argv)
     report = cast("dict[str, object]", json.loads(args.report.read_text(encoding="utf-8")))
     passed, message = evaluate(report)

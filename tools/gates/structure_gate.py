@@ -21,7 +21,7 @@ import ast
 import sys
 from pathlib import Path
 
-from tools.gates import toml_tables
+from tools.gates import repo_paths, toml_tables
 
 REVIEW_LIMIT = 200
 EXCEPTION_LIMIT = 300
@@ -134,11 +134,17 @@ def main(argv: list[str] | None = None) -> int:
         The process exit status: 0 when the tree passes, 1 otherwise.
     """
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--package", type=Path, default=Path("src/generic_ml_executor"))
-    parser.add_argument("--base", type=Path, default=Path())
-    parser.add_argument("--reviews", type=Path, default=Path("quality/module-size-reviews.toml"))
     parser.add_argument(
-        "--exceptions", type=Path, default=Path("quality/module-size-exceptions.toml")
+        "--package", type=repo_paths.safe_path, default=Path("src/generic_ml_executor")
+    )
+    parser.add_argument("--base", type=repo_paths.safe_path, default=Path())
+    parser.add_argument(
+        "--reviews", type=repo_paths.safe_path, default=Path("quality/module-size-reviews.toml")
+    )
+    parser.add_argument(
+        "--exceptions",
+        type=repo_paths.safe_path,
+        default=Path("quality/module-size-exceptions.toml"),
     )
     args = parser.parse_args(argv)
     problems = check(args.package, args.base, args.reviews, args.exceptions)

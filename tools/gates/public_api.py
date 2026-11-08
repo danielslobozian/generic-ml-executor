@@ -21,7 +21,7 @@ from pathlib import Path
 
 import griffe
 
-from tools.gates import comparison_base
+from tools.gates import comparison_base, repo_paths
 
 SNAPSHOT = "api/public-api.json"
 COUPLED = ("docs/reference/public-api.md", "CHANGELOG.md")
@@ -101,8 +101,8 @@ def main(argv: list[str] | None = None) -> int:
         The process exit status: 0 when the gate passes, 1 otherwise.
     """
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--src", type=Path, default=Path("src"))
-    parser.add_argument("--snapshot", type=Path, default=Path(SNAPSHOT))
+    parser.add_argument("--src", type=repo_paths.safe_path, default=Path("src"))
+    parser.add_argument("--snapshot", type=repo_paths.safe_path, default=Path(SNAPSHOT))
     parser.add_argument("--write", action="store_true", help="write the current surface")
     args = parser.parse_args(argv)
     current = render(surface(args.src))

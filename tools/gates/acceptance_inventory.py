@@ -25,7 +25,7 @@ import sys
 from pathlib import Path
 from typing import cast
 
-from tools.gates import toml_tables, yaml_reader
+from tools.gates import repo_paths, toml_tables, yaml_reader
 
 STATUSES = frozenset({"planned", "implemented", "not-applicable"})
 VENUES = frozenset({"acceptance-host", "ci", "release-pipeline"})
@@ -194,11 +194,17 @@ def main(argv: list[str] | None = None) -> int:
         The process exit status: 0 when the inventory passes, 1 otherwise.
     """
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--target", type=Path, default=Path("acceptance/target-cases.toml"))
-    parser.add_argument("--inventory", type=Path, default=Path("acceptance/required-cases.toml"))
-    parser.add_argument("--markers", type=Path, required=True)
     parser.add_argument(
-        "--release-workflow", type=Path, default=Path(".github/workflows/release.yml")
+        "--target", type=repo_paths.safe_path, default=Path("acceptance/target-cases.toml")
+    )
+    parser.add_argument(
+        "--inventory", type=repo_paths.safe_path, default=Path("acceptance/required-cases.toml")
+    )
+    parser.add_argument("--markers", type=repo_paths.safe_path, required=True)
+    parser.add_argument(
+        "--release-workflow",
+        type=repo_paths.safe_path,
+        default=Path(".github/workflows/release.yml"),
     )
     args = parser.parse_args(argv)
     markers = cast("dict[str, list[str]]", json.loads(args.markers.read_text(encoding="utf-8")))

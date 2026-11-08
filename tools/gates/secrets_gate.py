@@ -19,13 +19,15 @@ import tempfile
 from pathlib import Path
 from typing import cast
 
+from tools.gates import repo_paths
+
 BASELINE = Path(".secrets.baseline")
 
 
 def _findings(baseline: dict[str, object]) -> dict[tuple[str, str], dict[str, object]]:
     results = cast("dict[str, list[dict[str, object]]]", baseline.get("results", {}))
     return {
-        (path, str(item["hashed_secret"])): item
+        (path.replace("\\", "/"), str(item["hashed_secret"])): item
         for path, items in results.items()
         for item in items
     }
@@ -59,7 +61,7 @@ def main(argv: list[str] | None = None) -> int:
         The process exit status: 0 when no new secret exists, 1 otherwise.
     """
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--baseline", type=Path, default=BASELINE)
+    parser.add_argument("--baseline", type=repo_paths.safe_path, default=BASELINE)
     args = parser.parse_args(argv)
     committed = cast("dict[str, object]", json.loads(args.baseline.read_text(encoding="utf-8")))
     with tempfile.TemporaryDirectory() as work:

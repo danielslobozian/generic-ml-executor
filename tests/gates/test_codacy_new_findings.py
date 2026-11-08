@@ -72,3 +72,12 @@ def test_command_line(tmp_path: Path) -> None:
     head.write_text(json.dumps(_sarif("T", _result("E1", "error", "a"))), encoding="utf-8")
     assert cnf.main([str(base), str(base)]) == 0
     assert cnf.main([str(base), str(head)]) == 1
+
+
+def test_cli_failure_signal_is_detected() -> None:
+    """An analyser that did not install or run is unavailable infrastructure, never a pass."""
+    from tools.gates import codacy_gate  # noqa: PLC0415
+
+    assert codacy_gate.failure_signal("ok\nTool: pylint v3.3.6 (installation failed)\n")
+    assert codacy_gate.failure_signal("Tool failed to run: failed to install pylint")
+    assert codacy_gate.failure_signal("analysis complete\n") is None

@@ -1,0 +1,8 @@
+# Codacy repository configuration (dashboard and CLI). The `codacy` nox session analyses clean
+# worktrees of committed files only; these exclusions keep generated or vendored content out.
+exclude_paths:
+  - ".venv/**"
+  - ".nox/**"
+  - "results/**"
+  - "uv.lock"
+  - "acceptance/records/**"

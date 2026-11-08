@@ -17,6 +17,8 @@ import subprocess
 from pathlib import Path
 from typing import cast
 
+_ObjectMap = dict[str, object]
+
 
 def _git(*args: str) -> str | None:
     result = subprocess.run(["git", *args], capture_output=True, text=True, check=False)
@@ -27,14 +29,14 @@ def _pull_request_base_sha() -> str | None:
     event_path = os.environ.get("GITHUB_EVENT_PATH")
     if not event_path:
         return None
-    event = cast("dict[str, object]", json.loads(Path(event_path).read_text(encoding="utf-8")))
+    event = cast(_ObjectMap, json.loads(Path(event_path).read_text(encoding="utf-8")))
     pull_request = event.get("pull_request")
     if not isinstance(pull_request, dict):
         return None
-    base = cast("dict[str, object]", pull_request).get("base")
+    base = cast(_ObjectMap, pull_request).get("base")
     if not isinstance(base, dict):
         return None
-    sha = cast("dict[str, object]", base).get("sha")
+    sha = cast(_ObjectMap, base).get("sha")
     return sha if isinstance(sha, str) else None
 
 

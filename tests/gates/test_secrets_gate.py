@@ -35,3 +35,10 @@ def test_new_or_unaudited_finding_fails() -> None:
         "b.py:3: Secret Keyword is not an audited false positive",
         "c.py:3: Secret Keyword is not an audited false positive",
     ]
+
+
+def test_windows_separators_match_the_baseline() -> None:
+    """A rescan on Windows reports backslash paths; they match the committed forward-slash keys."""
+    committed = _baseline(("tools/gates/a.toml", "h1", False))
+    rescanned = _baseline(("tools\\gates\\a.toml", "h1", None))
+    assert secrets_gate.problems(committed, rescanned) == []

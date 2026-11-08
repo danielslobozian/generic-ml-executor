@@ -24,9 +24,12 @@ import urllib.request
 import zipfile
 from pathlib import Path
 
-from tools.gates import codacy_new_findings, comparison_base, toml_tables
+from tools.gates import codacy_new_findings, comparison_base, repo_paths, toml_tables
 
 CONFIG = Path("tools/gates/codacy_cli.toml")
+CONFIG_DIR = Path(".codacy")
+CODACY_YML = Path(".codacy.yml")
+FAILURE_SIGNALS = ("failed to run", "installation failed", "failed to install")
 EMPTY_SARIF = '{"version": "2.1.0", "runs": []}\n'
 MACHINES = {"amd64": "x86_64", "x86_64": "x86_64", "arm64": "arm64", "aarch64": "arm64"}
 
@@ -54,7 +57,7 @@ def _download(url: str, target: Path) -> None:
         message = f"refusing a non-HTTPS download: {url}"
         raise CodacyUnavailableError(message)
     try:
-        with urllib.request.urlopen(url, timeout=120) as answer:  # noqa: S310 - HTTPS checked above
+        with urllib.request.urlopen(url, timeout=120) as answer:  # noqa: S310
             target.write_bytes(answer.read())
     except OSError as error:
         message = f"cannot fetch {url}: {error}"
@@ -64,7 +67,7 @@ def _download(url: str, target: Path) -> None:
 def _extract(archive: Path, folder: Path) -> None:
     if archive.name.endswith(".zip"):
         with zipfile.ZipFile(archive) as bundle:
-            bundle.extractall(folder)  # noqa: S202 - digest-verified pinned release file
+            bundle.extractall(folder)  # noqa: S202
     else:
         with tarfile.open(archive) as bundle:
             bundle.extractall(folder, filter="data")
@@ -104,6 +107,24 @@ def fetch(config: dict[str, object]) -> Path:
     return executable
 
 
+def failure_signal(output: str) -> str | None:
+    """Return the CLI's own report of an analyser that did not install or run.
+
+    The CLI can exit 0 after an analyser failed; such output is unavailable
+    infrastructure, never a pass.
+
+    Args:
+        output: The CLI's combined output.
+
+    Returns:
+        The first line signalling a failure, or ``None``.
+    """
+    for line in output.splitlines():
+        if any(signal in line.lower() for signal in FAILURE_SIGNALS):
+            return line.strip()
+    return None
+
+
 def analyze(executable: Path, tree: Path, output: Path) -> None:
     """Install the configured analysers and analyse a tree into SARIF.
 
@@ -113,32 +134,44 @@ def analyze(executable: Path, tree: Path, output: Path) -> None:
         output: The SARIF file to write.
 
     Raises:
-        CodacyUnavailableError: When the CLI fails.
+        CodacyUnavailableError: When the CLI or one of its analysers fails.
     """
     for arguments in (["install"], ["analyze", "--format", "sarif", "-o", str(output)]):
-        result = subprocess.run([str(executable), *arguments], cwd=tree, check=False)
-        if result.returncode != 0:
-            message = f"codacy-cli {arguments[0]} failed in {tree} with status {result.returncode}"
+        result = subprocess.run(
+            [str(executable), *arguments],
+            cwd=tree,
+            check=False,
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+        )
+        print(result.stdout + result.stderr)
+        signal = failure_signal(result.stdout + result.stderr)
+        if result.returncode != 0 or signal:
+            message = f"codacy-cli {arguments[0]} failed (status {result.returncode}): {signal}"
             raise CodacyUnavailableError(message)
     if not output.is_file():
-        message = f"codacy-cli wrote no report for {tree}"
+        message = "codacy-cli wrote no report"
         raise CodacyUnavailableError(message)
 
 
-def _analyze_base(executable: Path, base: str, work: Path) -> Path:
-    tree, report = work / "base", work / "base.sarif"
-    subprocess.run(["git", "worktree", "add", "--detach", str(tree), base], check=True)
+def _analyze_commit(executable: Path, commit: str, tree: Path, report: Path) -> None:
+    subprocess.run(["git", "worktree", "add", "--detach", str(tree), commit], check=True)
     try:
-        shutil.rmtree(tree / ".codacy", ignore_errors=True)
-        shutil.copytree(Path(".codacy"), tree / ".codacy")
-        analyze(executable, tree, report)
+        shutil.rmtree(tree / CONFIG_DIR.name, ignore_errors=True)
+        shutil.copytree(CONFIG_DIR, tree / CONFIG_DIR.name)
+        shutil.copyfile(CODACY_YML, tree / CODACY_YML.name)
+        analyze(executable, tree, report.resolve())
     finally:
         subprocess.run(["git", "worktree", "remove", "--force", str(tree)], check=False)
-    return report
 
 
 def run(config_path: Path, results: Path) -> int:
-    """Run the complete gate.
+    """Run the complete gate on clean worktrees of the change and of its comparison base.
+
+    Both trees hold exactly the committed files and the change's ``.codacy/``
+    configuration, so local environments and caches are never analysed.
 
     Args:
         config_path: The ``codacy_cli.toml`` file.
@@ -148,16 +181,15 @@ def run(config_path: Path, results: Path) -> int:
         The exit status: 0 when no significant new finding exists, 1 otherwise.
     """
     results.mkdir(parents=True, exist_ok=True)
-    head_report = results / "codacy-head.sarif"
+    head_report, base_report = results / "codacy-head.sarif", results / "codacy-base.sarif"
     executable = fetch(toml_tables.load(config_path))
-    analyze(executable, Path.cwd(), head_report.resolve())
     base = comparison_base.resolve()
-    base_report = results / "codacy-base.sarif"
-    if base is None:
-        base_report.write_text(EMPTY_SARIF, encoding="utf-8")
-    else:
-        with tempfile.TemporaryDirectory() as work:
-            shutil.copyfile(_analyze_base(executable, base, Path(work)), base_report)
+    with tempfile.TemporaryDirectory() as work:
+        _analyze_commit(executable, "HEAD", Path(work) / "head", head_report)
+        if base is None:
+            base_report.write_text(EMPTY_SARIF, encoding="utf-8")
+        else:
+            _analyze_commit(executable, base, Path(work) / "base", base_report)
     return codacy_new_findings.main([str(base_report), str(head_report)])
 
 
@@ -171,8 +203,8 @@ def main(argv: list[str] | None = None) -> int:
         The process exit status.
     """
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--config", type=Path, default=CONFIG)
-    parser.add_argument("--results", type=Path, default=Path("results"))
+    parser.add_argument("--config", type=repo_paths.safe_path, default=CONFIG)
+    parser.add_argument("--results", type=repo_paths.safe_path, default=Path("results"))
     args = parser.parse_args(argv)
     try:
         return run(args.config, args.results)
