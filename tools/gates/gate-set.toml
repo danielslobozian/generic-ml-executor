@@ -1,0 +1,89 @@
+# Gate register (realization "Gate entry and subject lifecycle").
+# One row per gate session of noxfile.py: session, owner (TU) and state (active or pending).
+# Only `evidence` (owner TU-02) and `docs` (owner TU-19) may be pending; an active gate never
+# returns to pending. `green`, `acceptance` and `installed` are not gate sessions.
+
+[[gate]]
+session = "lint"
+owner = "TU-01"
+state = "active"
+
+[[gate]]
+session = "complexity"
+owner = "TU-01"
+state = "active"
+
+[[gate]]
+session = "structure"
+owner = "TU-01"
+state = "active"
+
+[[gate]]
+session = "imports"
+owner = "TU-01"
+state = "active"
+
+[[gate]]
+session = "typecheck"
+owner = "TU-01"
+state = "active"
+
+[[gate]]
+session = "tests"
+owner = "TU-01"
+state = "active"
+
+[[gate]]
+session = "coverage"
+owner = "TU-01"
+state = "active"
+
+[[gate]]
+session = "security"
+owner = "TU-01"
+state = "active"
+
+[[gate]]
+session = "licenses"
+owner = "TU-01"
+state = "active"
+
+[[gate]]
+session = "workflows"
+owner = "TU-01"
+state = "active"
+
+[[gate]]
+session = "public_api"
+owner = "TU-01"
+state = "active"
+
+[[gate]]
+session = "gate_set"
+owner = "TU-01"
+state = "active"
+
+[[gate]]
+session = "acceptance_inventory"
+owner = "TU-01"
+state = "active"
+
+[[gate]]
+session = "sonar"
+owner = "TU-01"
+state = "active"
+
+[[gate]]
+session = "codacy"
+owner = "TU-01"
+state = "active"
+
+[[gate]]
+session = "evidence"
+owner = "TU-02"
+state = "pending"
+
+[[gate]]
+session = "docs"
+owner = "TU-19"
+state = "pending"

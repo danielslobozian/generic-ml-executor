@@ -1,0 +1,141 @@
+# Required-case set of the release (realization "Acceptance environment"; plan section 7.5).
+# Written from the packaged specification (TC matrix of the bound target) and the plan's release
+# code-state assignment. It changes only with a retargeted realization or a changed plan assignment.
+
+tc = [
+  "TC-01",
+  "TC-02",
+  "TC-03",
+  "TC-04",
+  "TC-05",
+  "TC-06",
+  "TC-07",
+  "TC-08",
+  "TC-09",
+  "TC-10",
+  "TC-11",
+  "TC-12",
+  "TC-13",
+  "TC-14",
+  "TC-15",
+  "TC-16",
+  "TC-17",
+  "TC-18",
+  "TC-20",
+  "TC-21",
+  "TC-22",
+  "TC-23",
+  "TC-24",
+  "TC-25",
+  "TC-26",
+  "TC-27",
+  "TC-28",
+  "TC-29",
+  "TC-30",
+  "TC-31",
+  "TC-32",
+  "TC-33",
+  "TC-34",
+  "TC-35",
+  "TC-40",
+  "TC-41",
+  "TC-42",
+  "TC-43",
+  "TC-44",
+  "TC-45",
+  "TC-46",
+  "TC-50",
+  "TC-51",
+  "TC-52",
+  "TC-60",
+  "TC-61",
+  "TC-62",
+]
+
+test = [
+  "TEST-BU01-01",
+  "TEST-BU01-02",
+  "TEST-BU01-03",
+  "TEST-BU01-04",
+  "TEST-BU02-01",
+  "TEST-BU02-02",
+  "TEST-BU02-03",
+  "TEST-BU02-04",
+  "TEST-BU02-05",
+  "TEST-BU02-06",
+  "TEST-BU02-07",
+  "TEST-BU02-08",
+  "TEST-BU02-09",
+  "TEST-BU03-01",
+  "TEST-BU03-02",
+  "TEST-BU03-03",
+  "TEST-BU03-04",
+  "TEST-BU04-01",
+  "TEST-BU04-02",
+  "TEST-BU04-03",
+  "TEST-BU04-04",
+  "TEST-BU05-01",
+  "TEST-BU05-02",
+  "TEST-BU05-03",
+  "TEST-BU05-04",
+  "TEST-BU06-01",
+  "TEST-BU06-02",
+  "TEST-BU06-03",
+  "TEST-BU07-01",
+  "TEST-BU07-02",
+  "TEST-BU07-03",
+  "TEST-BU07-04",
+  "TEST-BU07-05",
+  "TEST-BU07-06",
+  "TEST-BU07-07",
+  "TEST-BU07-08",
+  "TEST-BU07-09",
+  "TEST-BU08-01",
+  "TEST-BU08-02",
+  "TEST-BU08-03",
+  "TEST-BU08-04",
+  "TEST-BU08-05",
+  "TEST-BU08-06",
+  "TEST-BU08-07",
+  "TEST-BU08-08",
+  "TEST-BU09-01",
+  "TEST-BU09-02",
+  "TEST-BU09-03",
+  "TEST-BU10-01",
+  "TEST-BU10-02",
+  "TEST-BU10-03",
+  "TEST-BU10-04",
+  "TEST-BU10-05",
+  "TEST-BU10-06",
+  "TEST-BU10-07",
+  "TEST-BU10-08",
+  "TEST-BU10-09",
+  "TEST-BU11-01",
+  "TEST-BU11-02",
+  "TEST-BU11-03",
+  "TEST-BU11-04",
+  "TEST-BU11-05",
+  "TEST-BU11-06",
+  "TEST-BU12-01",
+  "TEST-BU12-03",
+  "TEST-TU20-01",
+  "TEST-TU20-03",
+]
+
+[target]
+release = "generic-ml-executor"
+version = "0.1.1"
+path = "technical-specification.md"
+sha256 = "bc61ce46812153bd44ba67c7c586999faab06afce364d100830af3cb9d581bb7"
+
+[plan]
+path = "realizations/python/implementation/00-plan.md"
+sha256 = "66944b96d9f80b70e321659a7533d03711552e1123dadafe4fa6988c2bf2b4b0"
+
+[[product_not_applicable]]
+id = "TEST-TU13-07"
+ground = "TU-12 is applicable for product python: the gateway carries the bidirectional channel, so the HTTP-streaming alternative of TS-GW-08 is not used (realization \"Chosen architecture\")"
+
+[[product_not_applicable]]
+id = "TEST-TU14-12"
+ground = "TU-12 is applicable for product python: the gateway carries the bidirectional channel, so the HTTP-streaming alternative of TS-GW-08 is not used (realization \"Chosen architecture\")"

@@ -1,0 +1,827 @@
+# Acceptance inventory (realization "Acceptance environment"): one entry per identity of
+# target-cases.toml. status: planned | implemented | not-applicable; venue: acceptance-host | ci |
+# release-pipeline. An entry becomes implemented in the change that adds its first marked test,
+# and that change corrects the venue under the venue rule where needed.
+
+[target]
+release = "generic-ml-executor"
+version = "0.1.1"
+path = "technical-specification.md"
+sha256 = "bc61ce46812153bd44ba67c7c586999faab06afce364d100830af3cb9d581bb7"
+
+[[case]]
+id = "TC-01"
+status = "planned"
+venue = "ci"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TC-02"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TC-03"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TC-04"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TC-05"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TC-06"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TC-07"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TC-08"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TC-09"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TC-10"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TC-11"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TC-12"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TC-13"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TC-14"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TC-15"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TC-16"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TC-17"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TC-18"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TC-20"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = ["declaration entry UNSUPPORTED for that client and OS (or way of signing in); replaced by TC-29 (G-02)"]
+
+[[case]]
+id = "TC-21"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = ["declaration entry UNSUPPORTED for that client and OS (or way of signing in); replaced by TC-29 (G-02)"]
+
+[[case]]
+id = "TC-22"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = ["declaration entry UNSUPPORTED for that client and OS (or way of signing in); replaced by TC-29 (G-02)"]
+
+[[case]]
+id = "TC-23"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = ["declaration entry UNSUPPORTED for that client and OS (or way of signing in); replaced by TC-29 (G-02)"]
+
+[[case]]
+id = "TC-24"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = ["declaration entry UNSUPPORTED for that client and OS (or way of signing in); replaced by TC-29 (G-02)"]
+
+[[case]]
+id = "TC-25"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = ["declaration entry UNSUPPORTED for that client and OS (or way of signing in); replaced by TC-29 (G-02)"]
+
+[[case]]
+id = "TC-26"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = ["declaration entry UNSUPPORTED for that client and OS (or way of signing in); replaced by TC-29 (G-02)"]
+
+[[case]]
+id = "TC-27"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = ["declaration entry UNSUPPORTED for that client and OS (or way of signing in); replaced by TC-29 (G-02)"]
+
+[[case]]
+id = "TC-28"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = ["declaration entry UNSUPPORTED for that client and OS (or way of signing in); replaced by TC-29 (G-02)"]
+
+[[case]]
+id = "TC-29"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = ["declaration entry UNSUPPORTED for that client and OS (or way of signing in); replaced by TC-29 (G-02)"]
+
+[[case]]
+id = "TC-30"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = ["declaration entry UNSUPPORTED for that client and OS (or way of signing in); replaced by TC-29 (G-02)"]
+
+[[case]]
+id = "TC-31"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = ["declaration entry UNSUPPORTED for that client and OS (or way of signing in); replaced by TC-29 (G-02)"]
+
+[[case]]
+id = "TC-32"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = ["declaration entry UNSUPPORTED for that client and OS (or way of signing in); replaced by TC-29 (G-02)"]
+
+[[case]]
+id = "TC-33"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = ["declaration entry UNSUPPORTED for that client and OS (or way of signing in); replaced by TC-29 (G-02)"]
+
+[[case]]
+id = "TC-34"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = ["declaration entry UNSUPPORTED for that client and OS (or way of signing in); replaced by TC-29 (G-02)"]
+
+[[case]]
+id = "TC-35"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = ["declaration entry UNSUPPORTED for that client and OS (or way of signing in); replaced by TC-29 (G-02)"]
+
+[[case]]
+id = "TC-40"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = ["declaration entry UNSUPPORTED for that client and OS (or way of signing in); replaced by TC-29 (G-02)"]
+
+[[case]]
+id = "TC-41"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = ["declaration entry UNSUPPORTED for that client and OS (or way of signing in); replaced by TC-29 (G-02)"]
+
+[[case]]
+id = "TC-42"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = ["declaration entry UNSUPPORTED for that client and OS (or way of signing in); replaced by TC-29 (G-02)"]
+
+[[case]]
+id = "TC-43"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = ["declaration entry UNSUPPORTED for that client and OS (or way of signing in); replaced by TC-29 (G-02)"]
+
+[[case]]
+id = "TC-44"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = ["declaration entry UNSUPPORTED for that client and OS (or way of signing in); replaced by TC-29 (G-02)"]
+
+[[case]]
+id = "TC-45"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = ["declaration entry UNSUPPORTED for that client and OS (or way of signing in); replaced by TC-29 (G-02)"]
+
+[[case]]
+id = "TC-46"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = ["declaration entry UNSUPPORTED for that client and OS (or way of signing in); replaced by TC-29 (G-02)"]
+
+[[case]]
+id = "TC-50"
+status = "planned"
+venue = "ci"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TC-51"
+status = "planned"
+venue = "ci"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TC-52"
+status = "planned"
+venue = "ci"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TC-60"
+status = "implemented"
+venue = "ci"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TC-61"
+status = "planned"
+venue = "release-pipeline"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+realized_by = []
+
+[[case]]
+id = "TC-62"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TEST-BU01-01"
+status = "planned"
+venue = "ci"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TEST-BU01-02"
+status = "planned"
+venue = "ci"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TEST-BU01-03"
+status = "planned"
+venue = "ci"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TEST-BU01-04"
+status = "planned"
+venue = "ci"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TEST-BU02-01"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TEST-BU02-02"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TEST-BU02-03"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TEST-BU02-04"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TEST-BU02-05"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TEST-BU02-06"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TEST-BU02-07"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TEST-BU02-08"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TEST-BU02-09"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TEST-BU03-01"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TEST-BU03-02"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TEST-BU03-03"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TEST-BU03-04"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TEST-BU04-01"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TEST-BU04-02"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TEST-BU04-03"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TEST-BU04-04"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TEST-BU05-01"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TEST-BU05-02"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TEST-BU05-03"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TEST-BU05-04"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TEST-BU06-01"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TEST-BU06-02"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TEST-BU06-03"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TEST-BU07-01"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = ["declaration entry UNSUPPORTED for that client and OS (or way of signing in); replaced by TC-29 (G-02)"]
+
+[[case]]
+id = "TEST-BU07-02"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = ["declaration entry UNSUPPORTED for that client and OS (or way of signing in); replaced by TC-29 (G-02)"]
+
+[[case]]
+id = "TEST-BU07-03"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = ["declaration entry UNSUPPORTED for that client and OS (or way of signing in); replaced by TC-29 (G-02)"]
+
+[[case]]
+id = "TEST-BU07-04"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = ["declaration entry UNSUPPORTED for that client and OS (or way of signing in); replaced by TC-29 (G-02)"]
+
+[[case]]
+id = "TEST-BU07-05"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = ["declaration entry UNSUPPORTED for that client and OS (or way of signing in); replaced by TC-29 (G-02)"]
+
+[[case]]
+id = "TEST-BU07-06"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = ["declaration entry UNSUPPORTED for that client and OS (or way of signing in); replaced by TC-29 (G-02)"]
+
+[[case]]
+id = "TEST-BU07-07"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = ["declaration entry UNSUPPORTED for that client and OS (or way of signing in); replaced by TC-29 (G-02)"]
+
+[[case]]
+id = "TEST-BU07-08"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = ["declaration entry UNSUPPORTED for that client and OS (or way of signing in); replaced by TC-29 (G-02)"]
+
+[[case]]
+id = "TEST-BU07-09"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = ["declaration entry UNSUPPORTED for that client and OS (or way of signing in); replaced by TC-29 (G-02)"]
+
+[[case]]
+id = "TEST-BU08-01"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = ["declaration entry UNSUPPORTED for that client and OS (or way of signing in); replaced by TC-29 (G-02)"]
+
+[[case]]
+id = "TEST-BU08-02"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = ["declaration entry UNSUPPORTED for that client and OS (or way of signing in); replaced by TC-29 (G-02)"]
+
+[[case]]
+id = "TEST-BU08-03"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = ["declaration entry UNSUPPORTED for that client and OS (or way of signing in); replaced by TC-29 (G-02)"]
+
+[[case]]
+id = "TEST-BU08-04"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = ["declaration entry UNSUPPORTED for that client and OS (or way of signing in); replaced by TC-29 (G-02)"]
+
+[[case]]
+id = "TEST-BU08-05"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = ["declaration entry UNSUPPORTED for that client and OS (or way of signing in); replaced by TC-29 (G-02)"]
+
+[[case]]
+id = "TEST-BU08-06"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = ["declaration entry UNSUPPORTED for that client and OS (or way of signing in); replaced by TC-29 (G-02)"]
+
+[[case]]
+id = "TEST-BU08-07"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = ["declaration entry UNSUPPORTED for that client and OS (or way of signing in); replaced by TC-29 (G-02)"]
+
+[[case]]
+id = "TEST-BU08-08"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = ["declaration entry UNSUPPORTED for that client and OS (or way of signing in); replaced by TC-29 (G-02)"]
+
+[[case]]
+id = "TEST-BU09-01"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = ["declaration entry UNSUPPORTED for that client and OS (or way of signing in); replaced by TC-29 (G-02)"]
+
+[[case]]
+id = "TEST-BU09-02"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = ["declaration entry UNSUPPORTED for that client and OS (or way of signing in); replaced by TC-29 (G-02)"]
+
+[[case]]
+id = "TEST-BU09-03"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = ["declaration entry UNSUPPORTED for that client and OS (or way of signing in); replaced by TC-29 (G-02)"]
+
+[[case]]
+id = "TEST-BU10-01"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = ["declaration entry UNSUPPORTED for that client and OS (or way of signing in); replaced by TC-29 (G-02)"]
+
+[[case]]
+id = "TEST-BU10-02"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = ["declaration entry UNSUPPORTED for that client and OS (or way of signing in); replaced by TC-29 (G-02)"]
+
+[[case]]
+id = "TEST-BU10-03"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = ["declaration entry UNSUPPORTED for that client and OS (or way of signing in); replaced by TC-29 (G-02)"]
+
+[[case]]
+id = "TEST-BU10-04"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = ["declaration entry UNSUPPORTED for that client and OS (or way of signing in); replaced by TC-29 (G-02)"]
+
+[[case]]
+id = "TEST-BU10-05"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = ["declaration entry UNSUPPORTED for that client and OS (or way of signing in); replaced by TC-29 (G-02)"]
+
+[[case]]
+id = "TEST-BU10-06"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = ["declaration entry UNSUPPORTED for that client and OS (or way of signing in); replaced by TC-29 (G-02)"]
+
+[[case]]
+id = "TEST-BU10-07"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = ["declaration entry UNSUPPORTED for that client and OS (or way of signing in); replaced by TC-29 (G-02)"]
+
+[[case]]
+id = "TEST-BU10-08"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = ["declaration entry UNSUPPORTED for that client and OS (or way of signing in); replaced by TC-29 (G-02)"]
+
+[[case]]
+id = "TEST-BU10-09"
+status = "planned"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = ["declaration entry UNSUPPORTED for that client and OS (or way of signing in); replaced by TC-29 (G-02)"]
+
+[[case]]
+id = "TEST-BU11-01"
+status = "planned"
+venue = "ci"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TEST-BU11-02"
+status = "planned"
+venue = "ci"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TEST-BU11-03"
+status = "planned"
+venue = "ci"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TEST-BU11-04"
+status = "planned"
+venue = "ci"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TEST-BU11-05"
+status = "planned"
+venue = "ci"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TEST-BU11-06"
+status = "planned"
+venue = "ci"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TEST-BU12-01"
+status = "planned"
+venue = "release-pipeline"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+realized_by = []
+
+[[case]]
+id = "TEST-BU12-03"
+status = "planned"
+venue = "release-pipeline"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+realized_by = []
+
+[[case]]
+id = "TEST-TU20-01"
+status = "planned"
+venue = "release-pipeline"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+realized_by = []
+
+[[case]]
+id = "TEST-TU20-03"
+status = "planned"
+venue = "release-pipeline"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+realized_by = []
+
+[[case]]
+id = "TEST-TU13-07"
+status = "not-applicable"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []
+
+[[case]]
+id = "TEST-TU14-12"
+status = "not-applicable"
+venue = "acceptance-host"
+os = ["linux", "macos", "windows"]
+not_applicable_grounds = []

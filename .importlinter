@@ -1,0 +1,133 @@
+[importlinter]
+root_package = generic_ml_executor
+include_external_packages = True
+
+[importlinter:contract:domain-purity]
+name = 1 domain purity: the domain imports no use case, port, wiring, adapter or public interface
+type = forbidden
+source_modules =
+    generic_ml_executor.application.domain
+forbidden_modules =
+    generic_ml_executor.application.usecase
+    generic_ml_executor.application.port
+    generic_ml_executor.application.wiring
+    generic_ml_executor.adapter
+    generic_ml_executor.api
+
+[importlinter:contract:application-ring]
+name = 2 application ring: domain, ports and use cases import no adapter, wiring or public interface
+type = forbidden
+source_modules =
+    generic_ml_executor.application.domain
+    generic_ml_executor.application.port
+    generic_ml_executor.application.usecase
+forbidden_modules =
+    generic_ml_executor.adapter
+    generic_ml_executor.application.wiring
+    generic_ml_executor.api
+
+[importlinter:contract:ports]
+name = 3 ports import no use case
+type = forbidden
+source_modules =
+    generic_ml_executor.application.port
+forbidden_modules =
+    generic_ml_executor.application.usecase
+
+[importlinter:contract:no-drivers]
+name = 4 no drivers in the application ring
+type = forbidden
+source_modules =
+    generic_ml_executor.application
+forbidden_modules =
+    asyncio
+    socket
+    ssl
+    subprocess
+    threading
+    signal
+    http
+    urllib
+    zlib
+    h11
+    wsproto
+    truststore
+    psutil
+    brotli
+    backports
+    compression
+
+[importlinter:contract:general-not-specific]
+name = 5 general never depends on specific
+type = forbidden
+source_modules =
+    generic_ml_executor.application
+    generic_ml_executor.adapter.outbound.process
+    generic_ml_executor.adapter.outbound.http
+    generic_ml_executor.adapter.outbound.gateway
+    generic_ml_executor.adapter.outbound.engine
+    generic_ml_executor.adapter.outbound.observer
+    generic_ml_executor.adapter.outbound.interceptor
+    generic_ml_executor.adapter.outbound.statusline
+    generic_ml_executor.adapter.outbound.evidence
+    generic_ml_executor.adapter.outbound.usage_observer
+    generic_ml_executor.adapter.outbound.content_coding
+forbidden_modules =
+    generic_ml_executor.adapter.outbound.client
+    generic_ml_executor.adapter.outbound.provider
+    generic_ml_executor.adapter.outbound.kpi
+    generic_ml_executor.adapter.outbound.usage
+
+[importlinter:contract:neutral-gateway]
+name = 6 gateway, observers and interceptors are client- and provider-neutral
+type = forbidden
+source_modules =
+    generic_ml_executor.adapter.outbound.gateway
+    generic_ml_executor.adapter.outbound.observer
+    generic_ml_executor.adapter.outbound.interceptor
+forbidden_modules =
+    generic_ml_executor.adapter.outbound.client
+    generic_ml_executor.adapter.outbound.provider
+
+[importlinter:contract:independent-clients]
+name = 7a client adapters are mutually independent
+type = independence
+modules =
+    generic_ml_executor.adapter.outbound.client.claude_code
+    generic_ml_executor.adapter.outbound.client.codex
+    generic_ml_executor.adapter.outbound.client.cursor_agent
+    generic_ml_executor.adapter.outbound.client.mistral_vibe
+
+[importlinter:contract:independent-providers]
+name = 7b provider adapters are mutually independent
+type = independence
+modules =
+    generic_ml_executor.adapter.outbound.provider.anthropic
+    generic_ml_executor.adapter.outbound.provider.openai
+    generic_ml_executor.adapter.outbound.provider.google_gemini
+    generic_ml_executor.adapter.outbound.provider.mistral
+
+[importlinter:contract:independent-kpi]
+name = 7c known-private-information adapters are mutually independent
+type = independence
+modules =
+    generic_ml_executor.adapter.outbound.kpi.anthropic_messages
+    generic_ml_executor.adapter.outbound.kpi.openai_responses
+    generic_ml_executor.adapter.outbound.kpi.mistral_chat
+
+[importlinter:contract:independent-usage]
+name = 7d usage adapters are mutually independent
+type = independence
+modules =
+    generic_ml_executor.adapter.outbound.usage.anthropic_messages
+    generic_ml_executor.adapter.outbound.usage.openai_responses
+    generic_ml_executor.adapter.outbound.usage.mistral_chat
+
+[importlinter:contract:public-interface-on-top]
+name = 8 nothing depends on the public interface
+type = forbidden
+source_modules =
+    generic_ml_executor.application
+    generic_ml_executor.adapter
+forbidden_modules =
+    generic_ml_executor.api
