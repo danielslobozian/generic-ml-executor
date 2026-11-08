@@ -1,0 +1,4 @@
+# Reviewed exceptions for production modules above 300 physical lines.
+# One [[exception]] table per module: module (repository-relative path),
+# reviewer, date (YYYY-MM-DD) and reason.
+exception = []

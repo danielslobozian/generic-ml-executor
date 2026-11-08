@@ -1,0 +1,31 @@
+# Quality-gate conditions the SonarQube Cloud project must apply (realization "Quality gates", `sonar`).
+# The `sonar` session reads the gate assigned to the project through the web API and fails when any
+# condition below is missing or differs. Further service-side conditions only make the gate stricter.
+#
+# Rating 1 is A: "no new bugs" (reliability), "no new vulnerabilities" (security), "maintainability
+# rating A on new code"; hotspots reviewed below 100 % fails ("every new security hotspot reviewed").
+
+[service]
+host = "https://sonarcloud.io"
+organization = "danielslobozian"
+project = "danielslobozian_generic-ml-executor"
+
+[[condition]]
+metric = "new_reliability_rating"
+op = "GT"
+error = "1"
+
+[[condition]]
+metric = "new_security_rating"
+op = "GT"
+error = "1"
+
+[[condition]]
+metric = "new_security_hotspots_reviewed"
+op = "LT"
+error = "100"
+
+[[condition]]
+metric = "new_maintainability_rating"
+op = "GT"
+error = "1"

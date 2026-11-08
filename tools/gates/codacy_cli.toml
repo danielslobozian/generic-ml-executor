@@ -1,0 +1,31 @@
+# Pinned Codacy CLI v2 release (realization "Runtime and dependencies", Codacy analysis tool).
+# The `codacy` session downloads exactly this file for the running OS and architecture into the uv
+# cache directory, verifies its SHA-256 and fails on a mismatch. The analysers it runs and their
+# versions are fixed by the committed `.codacy/` configuration.
+
+version = "1.0.0-main.387.sha.28c6773"
+url = "https://github.com/codacy/codacy-cli-v2/releases/download/{version}/{file}"
+
+[asset.linux-x86_64]
+file = "codacy-cli-v2_1.0.0-main.387.sha.28c6773_linux_amd64.tar.gz"
+sha256 = "dfa47dad87d48df7a5076c57e0c124861b9a63903469e87e9b7af7323799fcbd"
+
+[asset.linux-arm64]
+file = "codacy-cli-v2_1.0.0-main.387.sha.28c6773_linux_arm64.tar.gz"
+sha256 = "1bdf6c4d32b0b497a522af705091772e9e7a208c02c7a3fde11a5e389b57dbdd"
+
+[asset.darwin-x86_64]
+file = "codacy-cli-v2_1.0.0-main.387.sha.28c6773_darwin_amd64.tar.gz"
+sha256 = "738f1cfaffc4188b275a2c3c04126189130abb94ea0ddb7b8e25173f3a2465fa"
+
+[asset.darwin-arm64]
+file = "codacy-cli-v2_1.0.0-main.387.sha.28c6773_darwin_arm64.tar.gz"
+sha256 = "627d54b8588d8f691945dfa906dd8203e8ed1cccf0df8e487139ba2d7fbe5605"
+
+[asset.win32-x86_64]
+file = "codacy-cli-v2_1.0.0-main.387.sha.28c6773_windows_amd64.zip"
+sha256 = "42f5ccd0474fbe84f0c88ae4a763868e6a18b24c5dcff7ab990381fe997f7a60"
+
+[asset.win32-arm64]
+file = "codacy-cli-v2_1.0.0-main.387.sha.28c6773_windows_arm64.zip"
+sha256 = "4d4321a4e0d0ed0aedbd17fbaa2d069719b38ee683806db519e5af2d84711315"
